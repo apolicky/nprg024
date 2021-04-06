@@ -1,0 +1,33 @@
+Pozdrav
+
+Co je to visitor pattern
+    dava moznost pridat novou funkcionalitu ruznym objektum bez potreby menit jejich strukturu
+
+    motivace
+        gof ukazuje na AST pro prochazeni ruznych druhu nodes(dedi od node_interface), kazdy z nich se zpracovava jinak.
+            Pruchod pretty-printeru, type-checkeru, ... funguje jinak pro kazdy checker a funguje i jinak pro kazdy node
+            Kdyby se ke kazdemu nodu davaly nove funkce pro kazdy check/refactor, preplnilo by se to rychle a byl by v tom zmatek.
+
+        visitor.PatronVisitor pattern prinasi moznost, jak oddelit funkcionalitu od nodes do jinych sdruzenych trid podle funkcnosti.
+
+    Jak visitor pattern vypada
+        Je zde visitor_interface, ktery pro kazdy objekt(node) definuje funcki visit(node_type* node).
+        A taky acceptor_interface, ktery definuje metodu accept(visitor_interface visitor).
+            Tridy implementujici tenro interface mu
+
+
+
+
+Typicky priklad vyuziti bez visitoru
+
+Priklad s visitiorem
+
+Single vs multiple dispatch
+
+kdy prichazi problem s double dispatch
+
+jak se to da resit
+
+Jak navazuje visitor na jine design patterny
+
+
