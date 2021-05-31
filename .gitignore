@@ -2,4 +2,8 @@ out/
 designpatterns.pdf
 .*
 vids/*
+*.iml
+last-year/*
+img/*
+
 
