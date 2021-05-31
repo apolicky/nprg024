@@ -12,7 +12,7 @@ public class Czech extends Person{
     }
 
     @Override
-    public void talkTo(Polak p) {
+    public void talkTo(Pole p) {
         System.out.println("Dobrý den! Dzień dobry!");
     }
 

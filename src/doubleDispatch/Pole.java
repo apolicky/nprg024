@@ -1,9 +1,9 @@
 package doubleDispatch;
 
-public class Polak extends Person{
+public class Pole extends Person{
     @Override
     public void speak() {
-        System.out.println("Jadę do Wrocławia.");
+        System.out.println("Dzień dobry!");
     }
 
     @Override
@@ -12,7 +12,7 @@ public class Polak extends Person{
     }
 
     @Override
-    public void talkTo(Polak p) {
+    public void talkTo(Pole p) {
         System.out.println("Cześć.");
     }
 

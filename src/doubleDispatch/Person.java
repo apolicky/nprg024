@@ -10,8 +10,8 @@ public class Person {
         System.out.println("Undefined sounds between two people in undefined language.");
     }
 
-    public void talkTo(Polak p) {
-        System.out.println("Person talks to Polak in undefined language.");
+    public void talkTo(Pole p) {
+        System.out.println("Person talks to Pole in undefined language.");
     }
 
     public void talkTo(Czech c) {
