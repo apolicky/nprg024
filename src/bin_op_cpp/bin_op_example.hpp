@@ -1,72 +1,70 @@
 #include <iostream>
 #include <string>
 
-class operand_base;
-class concrete_operand2;
-class concrete_operand1;
+class base_op;
+class int_op;
+class str_op;
 
 // visitable
-class operand_base {
+class base_op {
 public:
-    virtual void foo() = 0;
-    virtual std::string operator+(operand_base& what) = 0;
-    virtual std::string operator+(concrete_operand1& what) = 0;
-    virtual std::string operator+(concrete_operand2& what) = 0;
+    virtual void print_value() = 0;
+    virtual base_op* operator+(base_op& what) = 0;
+    virtual base_op* operator+(str_op& what) = 0;
+    virtual base_op* operator+(int_op& what) = 0;
 };
 
-class concrete_operand1 : public operand_base {
+class str_op : public base_op {
 public:
     std::string val;
 
-    concrete_operand1(const std::string& val_) : val(val_) {}
+    str_op(const std::string& val_) : val(val_) {}
 
-    void foo() {
-        std::cout << "foo from co1" << std::endl;
-    }
+    void print_value() { std::cout << "value of string operand: " << val << std::endl; }
     
-    std::string operator+(operand_base& what) override;
-    std::string operator+(concrete_operand1& what) override;
-    std::string operator+(concrete_operand2& what) override;
+    base_op* operator+(base_op& what) override;
+    base_op* operator+(str_op& what) override;
+    base_op* operator+(int_op& what) override;
 
 };
 
-class concrete_operand2 : public operand_base {
+class int_op : public base_op {
 public:
     int val;
 
-    concrete_operand2(int val_) : val(val_) {}
+    int_op(int val_) : val(val_) {}
 
-    void foo() {
-        std::cout << "foo from co2 " << this << std::endl;
-    }
+    void print_value() { std::cout << "value of int operand: " << val << std::endl; }
 
-    std::string operator+(operand_base& what) override;
-
-    std::string operator+(concrete_operand1& what) override;
-
-    std::string operator+(concrete_operand2& what) override;
+    base_op* operator+(base_op& what) override;
+    base_op* operator+(str_op& what) override;
+    base_op* operator+(int_op& what) override;
 };
 
-std::string concrete_operand1::operator+(operand_base& what) {
+// --- str_op -----------
+
+base_op* str_op::operator+(base_op& what) {
     return what + *this;
 }
 
-std::string concrete_operand1::operator+(concrete_operand1& what) {
-    return val + what.val;
+base_op* str_op::operator+(str_op& what) {
+    return new str_op(val + what.val);
 }
 
-std::string concrete_operand1::operator+(concrete_operand2& what) {
-    return val + std::to_string(what.val);
+base_op* str_op::operator+(int_op& what) {
+    return new str_op(val + std::to_string(what.val));
 }
 
-std::string concrete_operand2::operator+(operand_base& what) {
+// --- int_op -----------
+
+base_op* int_op::operator+(base_op& what) {
     return what + *this;
 }
 
-std::string concrete_operand2::operator+(concrete_operand1& what) {
-    return std::to_string(val) + what.val;
+base_op* int_op::operator+(str_op& what) {
+    return new str_op(std::to_string(val) + what.val);
 }
 
-std::string concrete_operand2::operator+(concrete_operand2& what) {
-    return std::to_string(val + what.val);
+base_op* int_op::operator+(int_op& what) {
+    return new int_op(val + what.val);
 }

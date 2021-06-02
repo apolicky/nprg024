@@ -6,19 +6,21 @@
 
 int main(int argc, const char* argv[])
 {
-    concrete_operand1 co1{"hello"};
-    concrete_operand2 co2{42};
+    str_op so{"hello"};
+    int_op io{42};
+    int_op io2{69};
 
-    operand_base& ob1 = co1;
-    operand_base& ob2 = co2;
+    base_op& ob1 = so;
+    base_op& ob2 = io;
+    base_op& ob3 = io2;
     
-    auto&& result = ob1 + ob2;
-    auto&& result2 = ob2 + ob1;
-    // result.foo();
+    auto str_int_mixed = ob1 + ob2;
+    auto str_str = ob1 + ob1;
+    auto int_int = ob2 + ob3;
 
-    std::cout << result << std::endl;
-    std::cout << result2 << std::endl;
-
+    str_int_mixed->print_value();
+    str_str->print_value();
+    int_int->print_value();
 
     return 0;
 }
